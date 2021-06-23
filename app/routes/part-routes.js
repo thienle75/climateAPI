@@ -1,8 +1,8 @@
 const fs = require('fs');
 const path = require('path');
 const swaggerJSDoc = require('swagger-jsdoc');
-const csv = require('fast-csv');
-
+const climateService = require('../service/climateService.js');
+const apiKeyService = require('../services/apiKeyService.js')
 
 module.exports = function(app, db) {
 
@@ -36,8 +36,13 @@ module.exports = function(app, db) {
 
 
     app.get('/weather', (req, res) => {
-      
-        res.send('weather');
+        if (apiKeyService.validateAPIKey(req.query.apikey)){
+            var list = climateService.getAllUrbanMeanByDate(req.query.date)
+            if (list){
+                res.send(list)
+            }
+        }
+        res.statusCode = 401;
     });
 
 };
