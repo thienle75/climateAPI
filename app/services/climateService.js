@@ -1,8 +1,10 @@
-var csvsync = require('csvsync');
-var fs = require('fs');
-var cityService = require('./cityService.js') 
-var csv = fs.readFileSync('./climate.csv');
-var climateList = csvsync.parse(csv ,{
+const csvsync = require('csvsync');
+const fs = require('fs');
+const cityService = require('./cityService.js') 
+const path = require('path');
+const dir = path.resolve('app/db','climate.csv')
+const csv = fs.readFileSync(dir);
+const climateList = csvsync.parse(csv ,{
   skipHeader: true,
   returnObject: true,
   headerKeys: [
@@ -79,9 +81,12 @@ module.exports.findMedian = (arr) =>{
   var count = 0;
   var sum =0
   for(var i= arr.length-1; i>=0; i--){
-    sum += arr[i].mean;
-    count ++
+    if (arr[i].mean !== ''){
+      sum += parseFloat(arr[i].mean);
+      count ++;
+    }
   }
+  
   if (count > 0){
     return sum / count
   }
@@ -93,15 +98,18 @@ module.exports.getAllUrbanMeanByDate = (inputDate) =>{
     return row.LOCAL_DATE === inputDate
   })
   var urbanList = cityService.findAllUrban()
-  urbanList.forEach(urban => {
-    var temp = []
-    stationList.forEach((station)=> {
-      var dist = distance(urban.lat, urban.lng, station.lat,station.lng,"K")
-      temp.push({urbanName: urban.city, climateIdentifier: station.CLIMATE_IDENTIFIER, dist: dist, mean:station.MEAN_TEMPERATURE })
-    })
-    urbanStationList.push(findShortestDistance(temp))
-  });
-  return urbanStationList
+  if(stationList.length >0  && urbanList.length > 0){
+    urbanList.forEach(urban => {
+      var temp = []
+      stationList.forEach((station)=> {
+        var dist = distance(urban.lat, urban.lng, station.lat,station.lng,"K")
+        temp.push({urbanName: urban.city, climateIdentifier: station.CLIMATE_IDENTIFIER, dist: dist, mean:station.MEAN_TEMPERATURE })
+      })
+      urbanStationList.push(findShortestDistance(temp))
+    });
+    return urbanStationList
+  }
+  return []
 }
 // var temp = getAllUrbanMeanByDate('2021-01-17 0:00')
 // console.log(temp)

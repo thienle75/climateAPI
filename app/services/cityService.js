@@ -1,7 +1,8 @@
-var csvsync = require('csvsync');
-var fs = require('fs');
- 
-var csv = fs.readFileSync('./cities.csv');
+const csvsync = require('csvsync');
+const fs = require('fs');
+const path = require('path');
+const dir = path.resolve('app/db','cities.csv')
+var csv = fs.readFileSync(dir);
 var cities = csvsync.parse(csv ,{
   skipHeader: true,
   returnObject: true,
