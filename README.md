@@ -62,11 +62,15 @@ it should return the list of all urban in canada with mean temperation and provi
 
 #### Assumtion
 
-Definition for urban is city which population > 1000 and desity has to be greater than 1 . In reality the density has to be greate than 400
-API key is static for authentication 
-APIkey = 'thisisatestfortealbook'
-Median = sum all mean temperature divide by number of urban 
-the function to calculate between two points is correct
+1) Definition for urban is city which population > 1000 and desity has to be greater than 1 . In reality the density has to be greate than 400
+
+2) API key is static for authentication 
+
+3) APIkey = 'thisisatestfortealbook'
+
+4)Median = sum all mean temperature divide by number of urban 
+
+5) the function to calculate between two points is correct
 
 ### How it works
 
