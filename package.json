@@ -6,7 +6,7 @@
   "scripts": {
     "start": "nodemon server.js",
     "prestart": "echo \"Documentation available @ http://localhost:9001/docs\"",
-    "test": "test"
+    "test": "jest"
   },
   "repository": {
     "type": "git",

@@ -68,8 +68,9 @@ APIkey = 'thisisatestfortealbook'
 
 ## Running the tests
 
-Not Avaliable.
+yarn test 
 
+npm run test
 
 
 ## Built With

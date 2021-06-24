@@ -1,4 +1,3 @@
-const fs = require('fs');
 const path = require('path');
 const swaggerJSDoc = require('swagger-jsdoc');
 const climateService = require('../service/climateService.js');

@@ -1,7 +1,7 @@
 var csvsync = require('csvsync');
 var fs = require('fs');
  
-var csv = fs.readFileSync('../db/cities.csv');
+var csv = fs.readFileSync('./cities.csv');
 var cities = csvsync.parse(csv ,{
   skipHeader: true,
   returnObject: true,

@@ -1,7 +1,7 @@
 var csvsync = require('csvsync');
 var fs = require('fs');
 var cityService = require('./cityService.js') 
-var csv = fs.readFileSync('../db/climate.csv');
+var csv = fs.readFileSync('./climate.csv');
 var climateList = csvsync.parse(csv ,{
   skipHeader: true,
   returnObject: true,
@@ -74,6 +74,18 @@ function findShortestDistance(arr){
     }
   }
   return ObjShortest;
+}
+module.exports.findMedian = (arr) =>{
+  var count = 0;
+  var sum =0
+  for(var i= arr.length-1; i>=0; i--){
+    sum += arr[i].mean;
+    count ++
+  }
+  if (count > 0){
+    return sum / count
+  }
+  return 0
 }
 module.exports.getAllUrbanMeanByDate = (inputDate) =>{
   var urbanStationList = []
