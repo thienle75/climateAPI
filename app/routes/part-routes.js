@@ -63,7 +63,6 @@ module.exports = function(app, db) {
      */
 
     app.get('/weather', (req, res) => {
-        console.log(req.query)
         if (apiKeyService.validateAPIKey(req.query.apikey)){
             var list = climateService.getAllUrbanMeanByDate(req.query.date)
             var median = climateService.findMedian(list)
