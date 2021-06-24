@@ -65,6 +65,18 @@ it should return the list of all urban in canada with mean temperation and provi
 Definition for urban is city which population > 1000 and desity has to be greater than 1 . In reality the density has to be greate than 400
 API key is static for authentication 
 APIkey = 'thisisatestfortealbook'
+Median = sum all mean temperature divide by number of urban 
+the function to calculate between two points is correct
+
+### How it works
+
+1. Get all station information has mean temperature for that day
+2. Get all urban of canada base on assumption above
+3. For each urban find the distance to each station
+4. Find smallest distance between weather station and urban
+5. Output the list of urban with the mean temperature
+6. Calculate the median 
+
 
 ## Running the tests
 
